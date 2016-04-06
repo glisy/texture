@@ -1,0 +1,28 @@
+{
+  "name": "glisy",
+  "version": "0.0.1",
+  "repo": "glisy/texture",
+  "description": "GlisyTexture",
+  "keywords": [
+    "glisy",
+    "texture"
+  ],
+  "src": [
+    "include/glisy/texture.h",
+    "src/texture.c"
+  ],
+  "dependencies": {
+    "glisy/gl": "0.0.1"
+  },
+  "development": {
+    "littlstar/soil": "0.0.2",
+    "glisy/glfw-shell": "0.0.5",
+    "jwerle/fs.c": "0.1.2",
+    "glisy/shader": "0.0.1",
+    "glisy/program": "0.0.4",
+    "glisy/buffer": "0.0.2",
+    "glisy/vao": "0.0.1",
+    "glisy/math": "0.0.4",
+    "glisy/uniform": "0.0.1"
+  }
+}
