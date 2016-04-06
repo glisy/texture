@@ -76,7 +76,6 @@ main (void) {
     // intialize texture
     GLuint shape[2] = { width, height };
     glisyTextureInit(&texture, GL_TEXTURE_2D);
-    glisyTextureBind(&texture);
     glisyTextureUpdate(&texture, (GLvoid **) image, shape, 0, 0, 0);
 
     // clean up

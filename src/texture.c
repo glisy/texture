@@ -1,11 +1,7 @@
 #include <glisy/texture.h>
 #include <glisy/gl.h>
 #include <string.h>
-#include <stdio.h>
 #include <math.h>
-
-#define min(a, b) a < b ? a : b < a ? b : a
-#define isPOT(n) (n !== 0 && (n & (n - 1)) === 0)
 
 static GLuint
 channel(GLenum format) {
