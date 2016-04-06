@@ -16,4 +16,4 @@ test: $(SRC)
 	./$@
 
 clean:
-	rm -rf $(SRC:.=)
+	rm -rf test
