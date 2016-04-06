@@ -77,13 +77,14 @@ main (void) {
     GLuint shape[2] = { width, height };
     glisyTextureInit(&texture, GL_TEXTURE_2D);
     glisyTextureUpdate(&texture, (GLvoid **) image, shape, 0, 0, 0);
+    glisyTextureUnbind(&texture);
 
     // clean up
     SOIL_free_image_data(image);
-  }
 
-  // initialize texture uniform
-  glisyUniformInit(&uTexture, "tex", GLISY_UNIFORM_INT, 0);
+    // initialize texture uniform
+    glisyUniformInit(&uTexture, "image", GLISY_UNIFORM_INT, 0);
+  }
 
   // start loop
   GLFW_SHELL_RENDER(window, { Render(); });

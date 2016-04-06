@@ -69,6 +69,13 @@ void
 glisyTextureBindSlot(GlisyTexture *texture, GLuint slot);
 
 /**
+ * Unbinds texture.
+ */
+
+void
+glisyTextureUnbind(GlisyTexture *texture);
+
+/**
  * Disposes of a GlisyTexture and the internal handle
  * created by glGenTextures. This will reset the handle
  * value and texture.
@@ -76,6 +83,13 @@ glisyTextureBindSlot(GlisyTexture *texture, GLuint slot);
 
 void
 glisyTextureDispose(GlisyTexture *texture);
+
+/**
+ * Sets texture to active texture at slot.
+ */
+
+void
+glisyTextureActive(GlisyTexture *texture, GLuint slot);
 
 /**
  * Generates mipmaps based on the current shape and calls
