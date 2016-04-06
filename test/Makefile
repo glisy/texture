@@ -6,6 +6,9 @@ CFLAGS += -I../include
 CFLAGS += -I../deps
 CFLAGS += -l glfw3
 
+#CFLAGS+= -D IMAGE_PATH='"equilinear.jpg"'
+CFLAGS+= -D IMAGE_PATH='"baboon.png"'
+
 ifeq (Darwin, $(OS))
 CFLAGS += -framework Foundation
 CFLAGS += -framework OpenGL

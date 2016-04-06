@@ -29,24 +29,29 @@ int width = 640;
 
 void
 Render() {
-  GlisyVAOAttribute position;
-  GlisyVAO vao;
-  vec2 vertices[] = {
+  static GlisyVAOAttribute position;
+  static GlisyVAO vao;
+  static GLboolean initialized = GL_FALSE;
+  static vec2 vertices[] = {
     +4.0f, -4.0f,
     -0.0f, +4.0f,
     -4.0f, -4.0f,
   };
 
-  // init vao
-  memset(&position, 0, sizeof(position));
-  glisyVAOInit(&vao);
+  if (!initialized) {
+    // init vao
+    memset(&position, 0, sizeof(position));
+    glisyVAOInit(&vao);
 
-  // set position attribute buffer options
-  position.buffer.data = vertices;
-  position.buffer.type = GL_FLOAT;
-  position.buffer.size = sizeof(position);
-  position.buffer.usage = GL_STATIC_DRAW;
-  position.buffer.dimension = 2;
+    // set position attribute buffer options
+    position.buffer.data = vertices;
+    position.buffer.type = GL_FLOAT;
+    position.buffer.size = sizeof(position);
+    position.buffer.usage = GL_STATIC_DRAW;
+    position.buffer.dimension = 2;
+  }
+
+  initialized = GL_TRUE;
 
   glisyVAOPush(&vao, &position);
   glisyVAOUpdate(&vao, 0);
@@ -70,20 +75,24 @@ main (void) {
 
   // load image and initialize texture
   {
+    printf("SOIL_load_image: %s\n", IMAGE_PATH);
     int width, height;
     unsigned char *image = SOIL_load_image(IMAGE_PATH, &width, &height, 0, SOIL_LOAD_AUTO);
 
-    // intialize texture
-    GLuint shape[2] = { width, height };
-    glisyTextureInit(&texture, GL_TEXTURE_2D);
-    glisyTextureUpdate(&texture, (GLvoid **) image, shape, 0, 0, 0);
-    glisyTextureUnbind(&texture);
+    if (image && width && height) {
+      // intialize texture
+      GLuint shape[2] = { width, height };
+      glisyTextureInit(&texture, GL_TEXTURE_2D);
+      glisyTextureUpdate(&texture, (GLvoid **) image, shape, 0, 0, 0);
+      glisyTextureUnbind(&texture);
 
-    // clean up
-    SOIL_free_image_data(image);
+      // clean up
+      SOIL_free_image_data(image);
 
-    // initialize texture uniform
-    glisyUniformInit(&uTexture, "image", GLISY_UNIFORM_INT, 0);
+      // initialize texture uniform
+      glisyUniformInit(&uTexture, "image", GLISY_UNIFORM_INT, 0);
+      glViewport(0, 0, width, height);
+    }
   }
 
   // start loop
