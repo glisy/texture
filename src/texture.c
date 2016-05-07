@@ -1,6 +1,7 @@
 #include <glisy/texture.h>
 #include <glisy/gl.h>
 #include <string.h>
+#include <stdio.h>
 #include <math.h>
 
 static GLuint
@@ -23,8 +24,8 @@ texImage2D(GlisyTexture *texture,
            GLsizei size,
            GLuint *offset,
            GLuint level) {
-  GLuint height = texture->shape[0];
   GLuint width = texture->shape[0];
+  GLuint height = texture->shape[1];
 
   if (offset) {
     if (texture->compressed) {
