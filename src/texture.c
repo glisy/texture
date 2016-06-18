@@ -181,6 +181,15 @@ glisyTextureUpdate(GlisyTexture *texture,
 
         // update format channel count
         texture->shape[3] = channel(texture->format);
+
+        // set texture wrap
+        glTexParameteri(texture->target, GL_TEXTURE_WRAP_S, texture->wrapS);
+        glTexParameteri(texture->target, GL_TEXTURE_WRAP_T, texture->wrapT);
+        glTexParameteri(texture->target, GL_TEXTURE_WRAP_R, texture->wrapR);
+
+        // Set texture filtering
+        glTexParameteri(texture->target, GL_TEXTURE_MIN_FILTER, texture->minFilter);
+        glTexParameteri(texture->target, GL_TEXTURE_MAG_FILTER, texture->magFilter);
         break;
     }
   }

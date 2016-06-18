@@ -33,6 +33,7 @@ struct GlisyTexture {
   GLenum type;
   GLenum wrapS;
   GLenum wrapT;
+  GLenum wrapR;
   GLenum target;
   GLenum format;
   GLenum minFilter;
